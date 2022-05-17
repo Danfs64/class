@@ -20,22 +20,30 @@
 (Func Nil) = Error.EmptyList
 
 // Returns the first element of a list
-// (Head xs)
+(Head  Nil       ) = Error.EmptyList
+(Head (Cons x xs)) = x
 
 // Returns the list without its first element
-// (Tail xs)
+(Tail  Nil       ) = Error.EmptyList
+(Tail (Cons x xs)) = xs
 
 // Returns the last element of a list
-// (Last xs)
+(Last  Nil        ) = Error.EmptyList
+(Last (Cons x Nil)) = x
+(Last (Cons x xs )) = (Last xs)
 
 // Returns the list without its first element
-// (Init xs)
+(Init  Nil        ) = Error.EmptyList
+(Init (Cons x Nil)) = Nil
+(Init (Cons x xs )) = (Cons x (Init xs))
 
 // Returns the length of the list
-// (Len xs)
+(Len  Nil       ) = Z
+(Len (Cons x xs)) = (S (Len xs))
 
 // Returns the concatenation of two lists
-// (Concat xs ys)
+(Concat  Nil        ys) = Nil
+(Concat (Cons x xs) ys) = (Cons x (Concat xs ys))
 
 // Returns the reversion of a list
 // (Reverse xs)

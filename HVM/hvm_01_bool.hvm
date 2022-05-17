@@ -17,16 +17,23 @@
 // Logical gates:
 
 // Negation 
-// (Not x)
+(Not True) = False
+(Not False) = True
 
 // Equal
-// (Equal x y)
+(Equal True  True ) = True
+(Equal False False) = True
+(Equal x     y    ) = False
 
 // And
-// (And x y)
+(And True True) = True
+(And x    y   ) = False
 
 // Or
-// (Or x y)
+(Or False False) = False
+(Or x     y    ) = True
 
 // Xor
-// (Xor x y)
+(Xor True False) = True
+(Xor False True) = True
+(Xor x     y   ) = False
