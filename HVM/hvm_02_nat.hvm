@@ -16,20 +16,20 @@
 // (Func x)     -> Will run for any number.
 
 // Returns the predecessor of the number
-(Pred  Z   ) = Z
+(Pred (Z  )) = Z
 (Pred (S x)) = x
 
 // Returns the Double of the number
-(Double  Z   ) = Z
+(Double (Z  )) = Z
 (Double (S x)) = (S (S (Double x)))
 
 // Returns the Half of the number and round it down (e.g.:"5/2 = 2") 
-(Half  Z       ) = Z
-(Half (S  Z   )) = Z
+(Half (Z      )) = Z
+(Half (S (Z  ))) = Z
 (Half (S (S x))) = (S (Half x))
 
 // Returns the Sum of two numbers
-(Add  Z    y) = y
+(Add (Z  ) y) = y
 (Add (S x) y) = (S (Add x y))
 
 // Returns the Subtraction of two numbers (0 if it would be negative)

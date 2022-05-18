@@ -20,40 +20,46 @@
 (Func Nil) = Error.EmptyList
 
 // Returns the first element of a list
-(Head  Nil       ) = Error.EmptyList
+(Head (Nil      )) = Error.EmptyList
 (Head (Cons x xs)) = x
 
 // Returns the list without its first element
-(Tail  Nil       ) = Error.EmptyList
+(Tail (Nil      )) = Error.EmptyList
 (Tail (Cons x xs)) = xs
 
 // Returns the last element of a list
-(Last  Nil        ) = Error.EmptyList
+(Last (Nil       )) = Error.EmptyList
 (Last (Cons x Nil)) = x
 (Last (Cons x xs )) = (Last xs)
 
 // Returns the list without its first element
-(Init  Nil        ) = Error.EmptyList
+(Init (Nil       )) = Error.EmptyList
 (Init (Cons x Nil)) = Nil
 (Init (Cons x xs )) = (Cons x (Init xs))
 
 // Returns the length of the list
-(Len  Nil       ) = Z
+(Len (Nil      )) = Z
 (Len (Cons x xs)) = (S (Len xs))
 
 // Returns the concatenation of two lists
-(Concat  Nil        ys) = Nil
+(Concat (Nil      ) ys) = ys
 (Concat (Cons x xs) ys) = (Cons x (Concat xs ys))
 
 // Returns the reversion of a list
-// (Reverse xs)
+(Reverse xs) = (Reverse.aux xs Nil)
+    (Reverse.aux (Nil      ) ys) = ys
+    (Reverse.aux (Cons x xs) ys) = (Reverse.aux xs (Cons x ys))
 
 //* ADVANCED SECTION
 
 // Map a function to all elements of the list
 // Ex.: (Map Not [True, False, True]) -> [False, True, False]
-// (Map fn xs)
+(Map fn (Nil      )) = Nil
+(Map fn (Cons x xs)) = (Cons (fn x) (Map fn xs))
 
 // Returns the list only with the elements that satisfy a condition
 // Ex.: (Filter Not [True, False, True]) -> [False]
-// (Filter fn xs)
+(Filter fn (Nil      )) = Nil
+(Filter fn (Cons x xs)) = (Filter.aux (fn x) fn (Cons x xs))
+    (Filter.aux 1 fn (Cons x xs)) = (Cons x (Filter fn xs))
+    (Filter.aux 0 fn (Cons x xs)) = (Filter fn xs)
