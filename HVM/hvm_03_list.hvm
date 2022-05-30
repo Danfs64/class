@@ -32,7 +32,7 @@
 (Last (Cons x Nil)) = x
 (Last (Cons x xs )) = (Last xs)
 
-// Returns the list without its first element
+// Returns the list without its last element
 (Init (Nil       )) = Error.EmptyList
 (Init (Cons x Nil)) = Nil
 (Init (Cons x xs )) = (Cons x (Init xs))
