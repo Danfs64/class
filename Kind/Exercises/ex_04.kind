@@ -116,7 +116,13 @@ hlf(a: Nat): Nat
 // 1 / 2 = 0
 // x / 0 = 0
 // 5 / 2 = 2
-div(a: Nat, b: Nat): Nat // division
+div(a: Nat, b: Nat): Nat
+    case b {
+        zero: Nat.zero
+        succ: div.aux(a, b)
+    }
+
+div.aux(a: Nat, b: Nat): Nat // division
     let less = ltn(a, b) 
     case less {
         true:  Nat.zero
